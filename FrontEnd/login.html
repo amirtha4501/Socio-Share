@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="stylesheet" href="/FrontEnd/css/bootstrap.min.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">Login</h1>
+                <form id="loginForm">
+                    <div class="form-group">
+                      <label for="username">Username</label>
+                      <input type="username" class="form-control" id="username" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(() => {
+            let token = localStorage.getItem('token');
+            if (token) {
+                location.href = '/';
+            }
+
+            $('#loginForm').submit(event => {
+                event.preventDefault();
+                let data = {
+                    username: $('#username')[0].value,
+                    password: $('#password')[0].value
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/login',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: (result, status, xhr) => {
+                        swal('Login Success', 'You have successfully logged in', 'success', {
+                            timer: 2000
+                        });
+                        localStorage.setItem('token', result['session_id'])
+                        location.href = '/';
+                    },
+                    error: (xhr, status, error) => {
+                        if (xhr.responseJSON['message'] == 'INVALID_USERNAME') {
+                            swal('Invalid Username', 'The entered username is incorrect', 'error');
+                        } else if (xhr.responseJSON['message'] == 'INVALID_PASSWORD') {
+                            swal('Invalid Password', 'The entered Password is incorrect', 'error');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
+
+

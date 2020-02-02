@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Register
+        </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/register.css">
+    </head>
+    <body>
+        <img src="img/sky.jpg" alt="background">
+        <nav>
+            <ul>
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+                <li>
+                    <a href="">Contact</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="bg-img jumbotron">
+            <form action="/signup">
+                <div class="login-box">
+                    <h1> Register </h1>
+                    <!-- <div class="text-box">
+                        <input type="text" autocomplete="off" required="Required field"><br>
+                        <i class="fa fa-user"></i>
+                        <label for="fname">First name</label>
+                    </div> -->
+                    <div class="text-box">
+                        <input type="text" name="username" autocomplete="off" required="Required field"><br>
+                        <label for="username">
+                            <i class="fa fa-user-o"></i>
+                            User name
+                        </label>
+                    </div>
+                    <div class="text-box">
+                        <input type="email" name="email" autocomplete="off" required="Required field"><br>
+                        <label for="email">
+                            <i class="fa fa-envelope"></i>
+                            Mail
+                        </label>
+                    </div>
+                    <div class="text-box">
+                        <input type="tel" name="mobile" autocomplete="off" required="Required field"><br>
+                        <label for="mobile">
+                            <i class="fa fa-phone"></i>
+                            Mobile
+                        </label>
+                    </div>
+                    <div class="text-box">
+                        <input type="password" name="password" required="Required field"><br>
+                        <label for="password">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                            New password
+                        </label>
+                    </div><br>
+                    <a onclick="login()" class="login">
+                        Login
+                    </a> 
+                </div>
+            </form>    
+        </div>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>News Feed</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">Posts</h1>
+                <div id="postContainer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(() => {
+            let token = localStorage.getItem('token');
+            if (!token) {
+                location.href = '/login.html';
+            }
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8000/posts',
+                headers: {
+                    Authorization: token
+                },
+                success: (response) => {
+                    console.log(response);
+                    let postContainer = $('#postContainer')[0];
+                    let postsBody = '';
+                    for (let i = 0; i < response.length; i++) {
+                        let postBody = `<div class="card my-3" id="post${response[i]['id']}">
+                            <div class="card-body">
+                                ${response[i]['content']}
+                            </div>
+                        </div>`;
+                        postsBody = postsBody + postBody;
+                    }
+
+                    postContainer.innerHTML = postsBody;
+                },
+                error: (xhr) => {
+                    swal(xhr.responseJSON['message'], 'Unknown Error Occured', 'error');
+                    if (xhr.responseJSON['message'] == 'TOKEN_NOT_FOUND') {
+                        localStorage.removeItem('token');
+                        location.href = 'login.html';
+                    }
+                }
+            });
+
+        });
+
+    </script>
+</body>
+</html>
