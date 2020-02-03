@@ -154,10 +154,6 @@ def delete_post(post_id):
         abort(400, {'message': 'POST_NOT_FOUND'})
 
     post_exist.delete()
-    # from app import db
-
-    # db.session.delete(post_exist)
-    # db.commit()
 
     return "DELETED"
 
@@ -171,14 +167,19 @@ def create_comment(post_id):
 
     input_data = request.get_json()
 
-    from model import Comment   
+    # if input_data['post_id'] not in 
+
+    from model import Comment, Post   
+    post_exist = Post.find(post_id)
+    if post_exist is None:
+        abort(400, {'message','POST_NOT_FOUND'})
 
     comment = Comment()
-    comment.post_id = post.id
+    comment.post_id = post_id
     comment.user_id = user.id
     comment.body = input_data['body']
     comment.save()
-    return jsonify()
+    return jsonify("Created.")
 
 def update_comment(post_id, comment_id):
     return jsonify()
