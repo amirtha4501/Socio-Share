@@ -126,17 +126,17 @@ def get_comments(post_id):
     if user is None:
         abort(400, {'message': 'TOKEN_NOT_FOUND'})
     from model import Comment, Post
-    # 
     p = Post.find(post_id)   
-    print(p.comments)
-
+    s = p.comments
     if p is None:
         abort(400, {'message': 'COMMENT_NOT_FOUND'})
-    the_response = {
-        'comment': p.comments
-    }
-    # return jsonify(the_response)
-    return "done"
+    comments_response = []
+    for i in s:
+        print(i.body)
+        comments_response.append({
+            'comment' : i.body
+            })
+    return jsonify(comments_response)
 
 def create_comment(post_id):
     user = SESSION.get(request.headers.get('Authorization'))
@@ -154,8 +154,8 @@ def create_comment(post_id):
     comment.save()
     return jsonify("Created.")
 
-def update_comment(post_id, comment_id):
-    return jsonify()
+# def update_comment(post_id, comment_id):
+#     return jsonify()
 
 def delete_comment(comment_id):
     # post_id, 

@@ -1,4 +1,4 @@
-from controller import healthcheck, login, logout, register, list_posts, create_post, get_post, update_post, delete_post, get_comments, create_comment, update_comment, delete_comment, get_likes, create_like, delete_like
+from controller import healthcheck, login, logout, register, list_posts, create_post, get_post, update_post, delete_post, get_comments, create_comment, delete_comment, get_likes, create_like, delete_like
 
 ROUTES = [
     ('GET', '/', healthcheck),
@@ -15,7 +15,7 @@ ROUTES = [
 
     ('GET', '/posts/<int:post_id>/comments', get_comments),
     ('POST', '/posts/<int:post_id>/comments',  create_comment),
-    ('PUT', '/posts/<int:post_id>/comments/<int:comment_id>', update_comment),
+    # ('PUT', '/posts/<int:post_id>/comments/<int:comment_id>', update_comment),
     ('DELETE', '/posts/<int:post_id>/comments/<int:comment_id>', delete_comment),
 
     ('GET', '/posts/<int:post_id>/likes', get_likes),
