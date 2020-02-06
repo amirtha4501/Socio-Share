@@ -15,7 +15,6 @@ ROUTES = [
 
     ('GET', '/posts/<int:post_id>/comments', get_comments),
     ('POST', '/posts/<int:post_id>/comments',  create_comment),
-    # ('PUT', '/posts/<int:post_id>/comments/<int:comment_id>', update_comment),
     ('DELETE', '/posts/<int:post_id>/comments/<int:comment_id>', delete_comment),
 
     ('GET', '/posts/<int:post_id>/likes', get_likes),

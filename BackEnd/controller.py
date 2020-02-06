@@ -154,11 +154,7 @@ def create_comment(post_id):
     comment.save()
     return jsonify("Created.")
 
-# def update_comment(post_id, comment_id):
-#     return jsonify()
-
-def delete_comment(comment_id):
-    # post_id, 
+def delete_comment(post_id, comment_id):
     user = SESSION.get(request.headers.get('Authorization'))
     if user is None:
         abort(400, {'message': 'TOKEN_NOT_FOUND'})
@@ -177,7 +173,20 @@ def get_likes(post_id):
     return jsonify()
  
 def create_like(post_id):
-    return jsonify()
+    user = SESSION.get(request.headers.get('Authorization'))
+    if user is None:
+        abort(400, {'message': 'TOKEN_NOT_FOUND'})
+    input_data = request.get_json()
+    from model import Like, Post   
+    post_exist = Post.find(post_id)
+    if post_exist is None:
+        abort(400, {'message','POST_NOT_FOUND'})
+    like = Like()
+    like.post_id = post_id
+    like.user_id = user.id
+    like.save()
+
+    return jsonify("Created")
 
 def delete_like(post_id):
     return jsonify()
