@@ -168,15 +168,29 @@ def delete_comment(post_id, comment_id):
 
 
 
-
 def get_likes(post_id):
-    return jsonify()
+    user = SESSION.get(request.headers.get('Authorization'))
+    if user is None:
+        abort(400, {'message': 'TOKEN_NOT_FOUND'})
+    from model import Like, Post
+    p = Post.find(post_id)   
+    s = p.likes
+    if p is None:
+        abort(400, {'message': 'NO_LIKES_FOUND'})
+    likes_response = []
+    for i in s:
+        print(i.user_id)
+        likes_response.append({
+            'user' : i.user_id
+            })
+    return jsonify(likes_response)
+
  
 def create_like(post_id):
     user = SESSION.get(request.headers.get('Authorization'))
     if user is None:
         abort(400, {'message': 'TOKEN_NOT_FOUND'})
-    input_data = request.get_json()
+    # input_data = request.get_json()
     from model import Like, Post   
     post_exist = Post.find(post_id)
     if post_exist is None:
@@ -185,8 +199,16 @@ def create_like(post_id):
     like.post_id = post_id
     like.user_id = user.id
     like.save()
+    return "Liked."
 
-    return jsonify("Created")
-
-def delete_like(post_id):
-    return jsonify()
+def delete_like(post_id, like_id):
+    user = SESSION.get(request.headers.get('Authorization'))
+    if user is None:
+        abort(400, {'message': 'TOKEN_NOT_FOUND'})
+    from model import Like
+    like_exist = Like.find(like_id)   
+    if like_exist is None:
+        abort(400, {'message': 'NOT_YET_LIKED'})
+    like_exist.delete()
+    return jsonify("Deleted")
+    

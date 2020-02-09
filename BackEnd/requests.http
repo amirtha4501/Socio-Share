@@ -51,8 +51,8 @@ Authorization: 417fa674-1602-4ca6-bed6-9d9239f82151
 }
 
 ### Delete Post
-DELETE http://localhost:8000/posts/1 HTTP/1.1
-Authorization: 0681a541-d0a9-4cc0-a08f-2743f3147c5f
+DELETE http://localhost:8000/posts/2 HTTP/1.1
+Authorization: 12e4989d-e364-430e-8283-4b94000b1ffb
 
 
 
@@ -70,5 +70,20 @@ Authorization: 3bb19959-0c34-4b1f-9d61-54de3ab2d51e
     "body": "This is my comment 2"
 }
 
-# ### Delete comment
-# DELETE http://localhost:8000/
+### Delete comment
+DELETE http://localhost:8000/posts/1/comments/4 HTTP/1.1
+Authorization: 6e5880e9-d5a1-4b03-8d3c-fe811dc6941b
+
+
+
+### Get likes
+GET  http://localhost:8000/2/likes HTTp/1.1
+Authorization: 81693172-4c68-4c1c-87bf-ffc813eab77e
+
+### Create likes
+POST http://localhost:8000/posts/2/likes HTTP/1.1
+Authorization: d013eebe-8507-4eba-b537-782fa16691e6
+
+### Delete likes
+DELETE http://localhost:8000/posts/2/likes/1 HTTP/1.1
+Authorization: 08ac88cb-e59e-4f78-bc29-165d60c703a3

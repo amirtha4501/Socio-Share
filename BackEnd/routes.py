@@ -19,6 +19,6 @@ ROUTES = [
 
     ('GET', '/posts/<int:post_id>/likes', get_likes),
     ('POST', '/posts/<int:post_id>/likes', create_like),
-    ('DELETE', '/posts/<int:post_id>/likes', delete_like),
+    ('DELETE', '/posts/<int:post_id>/likes/<int:like_id>', delete_like),
 
 ]
