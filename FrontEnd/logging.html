@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -43,13 +42,6 @@
                 <h1>
                     Login
                 </h1>
-                <!-- <div class="text-box">
-                    <input type="number" id="user_id" name="user_id" class="input user_id" required="Required field"> <br>
-                    <label for="user_id">
-                        <i class="fa fa-id-badge"></i>
-                        User Id
-                    </label>
-                </div> -->
                 <div class="text-box">
                     <input type="text" autocomplete="off" id="user_name" name="user_name" class="input user_name" required="Required field"> <br>
                     <label for="username">
@@ -60,14 +52,13 @@
                 <div class="text-box">
                     <input type="password" id="password" name="password" class="input password" required="Required field"><br>
                     
-                    <span><i onclick="showpassword(this)" class="fa fa-eye"></i></span>
                     
                     <label for="password"> 
                         <i class="fa fa-key" aria-hidden="true"></i>
                         Password
-                        <!-- <i class="fa fa-eye-slash"></i> -->
                     </label>
-
+                    <!-- <span><i onclick="showpassword(this)" class="fa fa-eye"></i></span> -->
+                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
                 <a onclick="signin()" class="sign-in">
                     Sign in
@@ -76,39 +67,46 @@
         </form>
     </div>
     <script>
+        function showpassword() {
+            // var ele = document.getElementById('password');
+            // if (ele.type === 'password') {
+            //     ele.type = 'text';
+            //     // x.classList.toggle("fa-eye")
+            // }
+            // else {
+            //     ele.type = 'password';
+            //     x.classList.toggle("fa-eye-slash");
+            // }
+            $(".toggle-password").click(function() {
 
-        function showpassword(x) {
-            var ele = document.getElementById('password');
-            if (ele.type === 'password') {
-                ele.type = 'text';
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+            input.attr("type", "text");
+            } else {
+            input.attr("type", "password");
             }
-            else {
-                ele.type = 'password';
-                var change_icon = document.getElementsByClassName('fa fa-key');
-                // change_icon.innerHtml = <i class="fa fa-eye-slash">
-                x.classList.toggle("fa fa-eye-slash");
-            }
-            console.log(ele)
-
+            });
         }
-
+        showpassword();
         function signin() {
             let data = {
-                // user_id : document.getElementById('user_id').value,
                 username : document.getElementById('user_name').value,
                 password : document.getElementById('password').value
-            }
+            };
             console.log(data);
 
             let jsonString = JSON.stringify(data);
             console.log(jsonString);
-
+            console.log("jsonString");
+            
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://localhost:8000/login');
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
             xhr.send(jsonString);
             xhr.onload = () => {
-
-            }
+                alert(`Loaded: ${xhr.status} ${xhr.response}`);       
+            };
         }
 
 
