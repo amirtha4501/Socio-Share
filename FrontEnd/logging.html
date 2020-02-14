@@ -51,13 +51,10 @@
                 </div>
                 <div class="text-box">
                     <input type="password" id="password" name="password" class="input password" required="Required field"><br>
-                    
-                    
                     <label for="password"> 
                         <i class="fa fa-key" aria-hidden="true"></i>
                         Password
                     </label>
-                    <!-- <span><i onclick="showpassword(this)" class="fa fa-eye"></i></span> -->
                     <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
                 <a onclick="signin()" class="sign-in">
@@ -67,38 +64,25 @@
         </form>
     </div>
     <script>
-        function showpassword() {
-            // var ele = document.getElementById('password');
-            // if (ele.type === 'password') {
-            //     ele.type = 'text';
-            //     // x.classList.toggle("fa-eye")
-            // }
-            // else {
-            //     ele.type = 'password';
-            //     x.classList.toggle("fa-eye-slash");
-            // }
             $(".toggle-password").click(function() {
 
-            $(this).toggleClass("fa-eye fa-eye-slash");
-            var input = $($(this).attr("toggle"));
-            if (input.attr("type") == "password") {
-            input.attr("type", "text");
-            } else {
-            input.attr("type", "password");
-            }
+                $(this).toggleClass("fa-eye fa-eye-slash");
+                var ele = document.getElementById('password');
+                if (ele.type === 'password') {
+                    ele.type = 'text';
+                }
+                else {
+                    ele.type = 'password';
+                }
             });
-        }
-        showpassword();
+
         function signin() {
             let data = {
                 username : document.getElementById('user_name').value,
                 password : document.getElementById('password').value
             };
-            console.log(data);
 
             let jsonString = JSON.stringify(data);
-            console.log(jsonString);
-            console.log("jsonString");
             
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://localhost:8000/login');
