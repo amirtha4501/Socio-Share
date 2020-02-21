@@ -8,6 +8,18 @@
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/register.css">
+    
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
     </head>
     <body>
         <img src="img/sky.jpg" alt="background">
@@ -25,42 +37,64 @@
             </ul>
         </nav>
         <div class="bg-img jumbotron">
-            <form action="/signup">
+            <form class="bookmark-form" method="POST" action="">
                 <div class="login-box">
                     <h1> Register </h1>
                     <div class="text-box">
-                        <input type="text" name="username" autocomplete="off" required="Required field"><br>
+                        <input type="text" name="username" id="username" autocomplete="off" required="Required field"><br>
                         <label for="username">
                             <i class="fa fa-user-o"></i>
                             User name
                         </label>
                     </div>
                     <div class="text-box">
-                        <input type="email" name="email" autocomplete="off" required="Required field"><br>
+                        <input type="email" name="email" id="email" autocomplete="off" required="Required field"><br>
                         <label for="email">
                             <i class="fa fa-envelope"></i>
                             Mail
                         </label>
                     </div>
                     <div class="text-box">
-                        <input type="tel" name="mobile" autocomplete="off" required="Required field"><br>
+                        <input type="tel" name="mobile" id="mobile" autocomplete="off" required="Required field"><br>
                         <label for="mobile">
                             <i class="fa fa-phone"></i>
                             Mobile
                         </label>
                     </div>
                     <div class="text-box">
-                        <input type="password" name="password" required="Required field"><br>
+                        <input type="password" name="password" id="password" required="Required field"><br>
                         <label for="password">
                             <i class="fa fa-key" aria-hidden="true"></i>
                             New password
                         </label>
-                    </div><br>
-                    <a onclick="login()" class="login">
-                        Login
+                    </div>
+                    <a onclick="signup()" class="signup">
+                        Sign-up
                     </a> 
                 </div>
             </form>    
         </div>
+        <script>
+            function signup() {
+                let data = {
+                    username : document.getElementById('username').value,
+                    email : document.getElementById('email').value,
+                    mobile : document.getElementById('mobile').value,
+                    password : document.getElementById('password').value
+                };
+
+                let jsonString = JSON.stringify(data);
+                
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'http://localhost:8000/register');
+                xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                xhr.send(jsonString);
+                xhr.onload = () => {
+                    alert(`Loaded: ${xhr.status} ${xhr.response}`);       
+                    location.replace("timeline.html"); 
+                };
+            }
+
+        </script>
     </body>
 </html>

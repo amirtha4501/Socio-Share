@@ -1,4 +1,4 @@
-@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+* {box-sizing: border-box;}
 
 body {
     font-family: sans-serif;
@@ -10,118 +10,10 @@ body {
     font-family: consolas;
 }
 
-.sign-in {
-    border: 1px solid gold;
-    border-radius: 8px;
-    margin-top: 45px;
-    margin-left: 45px;
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    color: white !important;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 24px;
-    overflow: hidden;
-    transition: 0.2s;
-}
-
-.sign-in:hover {
-    background: orange;
-    box-shadow: 0 0 10px orange, 0 0 30px orange, 0 0 70px orange;
-    transition-delay: .01s;
-    text-decoration: none !important;
-    border-radius: 8px;
-    border: none;
-}
-
-.login-box {
-    border-color: blue !important;
-    width: 280px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-}
-
-.login-box h1 {
-    float: left;
-    font-size: 40px;
-    border-bottom: 6px solid goldenrod;
-    margin-bottom: 50px;
-    padding: 13px;
-    margin-left: 18%;
-}
-
-img {
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    filter: brightness(18%);
-}
-
-.text-box {
-    width: 100%;
-    overflow: hidden;
-    font-size: 20px;
-    padding: 8px 0;
-    margin: 8px 0;
-    border-bottom: 1px solid blueviolet;
-}
-
-.text-box label {
-    font-weight: lighter;
-    color: aliceblue;
-}
-
-.text-box i {
-    width: 26px;
-    float: left;
-    text-align: center;
-}
-
-.text-box input {
-    border: none;
-    outline: none;
-    background: none;
-    color: white;
-    font-size: 18px;
-    width: 80%;
-    margin: 0 10px;
-}
-
-form div {
-    position: relative;
-}
-
-form div label {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    color: white;
-    transition: .5s;
-    pointer-events: none;
-}
-
-.text-box input:valid~label,
-.text-box input:focus~label {
-    top: 1px !important;
-    left: 0 !important;
-    color: aliceblue !important;
-    font-size: 12px !important;
-}
-
-i {
-    margin-right: 1.2em;
-}
-
-/* nav bar code--------------------------------------------- */
 nav {
     position: absolute;
     top: -15px;
+    min-height: 100px;
 }
 
 h1,h2,h3,h4,h5,h6,p,a,ul,ol,li,small {
@@ -137,12 +29,13 @@ h1,h2,h3,h4,h5,h6,p,a,ul,ol,li,small {
 nav {
     width: 100%;
     margin: 20px 0;
-    background: #303030;
+    background: #303030; /* Old browsers */
     background: -moz-linear-gradient(top, #303030 0%, #8a2be2 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#303030), color-stop(100%,#8a2be2)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top,#303030 0%,#8a2be2 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top,#303030 0%,#8a2be2 100%); /* Opera 11.10+ */
     background: linear-gradient(to bottom,#303030 0%,#8a2be2 100%); /* W3C standard, IE10+ */
+    min-height: 50px;
 }
 
 /* Make the list of links take up the whole width of the nav */
@@ -170,7 +63,9 @@ nav ul li a {
     background: -webkit-linear-gradient(top,#303030 0%,#8a2be2 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top,#303030 0%,#8a2be2 100%); /* Opera 11.10+ */
     background: linear-gradient(to bottom,#303030 0%,#8a2be2 100%); /* W3C standard, IE10+ */
-    }
+    min-height: 50px;
+    font-size: 22px;
+}
 
 /* for hovering effect */
 nav ul li a:hover {
@@ -195,32 +90,120 @@ nav ul li a:focus,
 nav ul li a:visited,
 nav ul li a:hover,
 nav ul li a:active {
-  color: #383838;
-  text-decoration: none; 
+    color: #383838;
+    text-decoration: none; 
 }
 
-.signup {
-    border: 1px solid gold;
-    border-radius: 8px;
-    margin-top: 45px;
-    margin-left: 45px;
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    color: white !important;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 24px;
-    overflow: hidden;
-    transition: 0.2s;
-}
 
-.signup:hover {
-    background: orange;
-    box-shadow: 0 0 10px orange, 0 0 30px orange, 0 0 70px orange;
-    transition-delay: .01s;
-    text-decoration: none !important;
-    border-radius: 8px;
+.topnav input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
     border: none;
 }
+
+.topnav .search-container {
+    position: absolute;
+    left: 50%;
+}
+/* 
+.topnav .search-container button {
+    padding: 6px;
+    margin-top: 8px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+} */
+
+.search-container i{
+    font-size: large;
+    color: aliceblue;
+    padding-left: 7px;
+    padding-top: 5.5px !important;
+    padding-bottom: 7px;
+    padding-right: 7px;
+    background-color: cornflowerblue;
+    border-radius: 3px;
+}
+
+.search-container i:hover {
+    background:  tomato; /* Old browsers */
+    background: -moz-linear-gradient(top,
+       tomato 0%,  tomato 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom,
+      color-stop(0%, tomato),
+      color-stop(100%, tomato)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,
+       tomato 0%, tomato 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,
+       tomato 0%, tomato 100%); /* Opera 11.10+ */
+    background: linear-gradient(to bottom,
+       tomato 0%, tomato 100%); /* W3C standard, IE10+ */
+    transition: background 2s;
+    color: white !important;
+}
+
+.search-container input {
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}
+
+
+/* ========================================================================================= */
+
+.floater-content {
+    margin-top: 7%;
+    margin-left: 33%;
+    position: absolute;
+}
+
+.floater-content textarea {
+    border-radius: 10px 35px;
+    text-decoration: none;
+    font-size: 15px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    outline: none;
+    resize: none;
+    background-position: bottom right;
+    padding: 20px;
+}
+
+.floater-content button{
+    margin-top: 5px;
+    padding: 4px 8px;
+    font-size: 20px;
+    background-color: dodgerblue;
+    border-radius: 3px;
+    border: none;
+    margin: none;
+    color: white;
+    float: right;
+    text-decoration: none;
+}
+/* 
+.overlay  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.80);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.3s ease opacity;
+    z-index: 10;
+    pointer-events: none;
+}
+
+body.show-floater .floater {
+    transform: scale(1.1);
+}
+body.show-floater .floater input[type=text] {
+    padding: 50px 20px;
+    font-size: 18px;
+}
+body.show-floater .overlay {
+    opacity: 1;
+    pointer-events: all;
+} */
