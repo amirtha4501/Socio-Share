@@ -24,9 +24,9 @@
     </div>
     <script>
         $(document).ready(() => {
-            let token = localStorage.getItem('token');
+            let token = localStorage.getItem('user');
             if (!token) {
-                location.href = '/login.html';
+                location.href = '/logging.html';
             }
             $.ajax({
                 type: 'GET',
@@ -53,7 +53,7 @@
                     swal(xhr.responseJSON['message'], 'Unknown Error Occured', 'error');
                     if (xhr.responseJSON['message'] == 'TOKEN_NOT_FOUND') {
                         localStorage.removeItem('token');
-                        location.href = 'login.html';
+                        location.href = 'logging.html';
                     }
                 }
             });

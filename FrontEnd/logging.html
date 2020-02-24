@@ -55,7 +55,7 @@
                         <i class="fa fa-key" aria-hidden="true"></i>
                         Password
                     </label>
-                    <!-- <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span> -->
+                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
                 <a onclick="signin()" class="sign-in">
                     Sign in
@@ -64,17 +64,17 @@
         </form>
     </div>
     <script>
-            // $(".toggle-password").click(function() {
+        $(".toggle-password").click(function() {
 
-            //     $(this).toggleClass("fa-eye fa-eye-slash");
-            //     var ele = document.getElementById('password');
-            //     if (ele.type === 'password') {
-            //         ele.type = 'text';
-            //     }
-            //     else {
-            //         ele.type = 'password';
-            //     }
-            // });
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var ele = document.getElementById('password');
+            if (ele.type === 'password') {
+                ele.type = 'text';
+            }
+            else {
+                ele.type = 'password';
+            }
+        });
 
         function signin() {
             let data = {
@@ -87,11 +87,12 @@
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://localhost:8000/login');
             xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-            xhr.send(jsonString);
             xhr.onload = () => {
-                alert(`Loaded: ${xhr.status} ${xhr.response}`);   
+                localStorage.setItem('user', xhr.response);
+                alert(`Loaded: ${xhr.status} ${xhr.response}`);  
                 location.replace("timeline.html"); 
             };
+            xhr.send(jsonString);
         }
 
 

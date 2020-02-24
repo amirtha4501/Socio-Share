@@ -10,6 +10,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
     <div class="topnav">
@@ -37,17 +38,27 @@
     </div>
     <div class="overlay"></div>
     <div class="floater-content">
-        <form class="post-form">
+        <form class="post-form" onsubmit="event.preventDefault(); create_post()">
           <div class="create-post">
-            <textarea name="post-area" id="post-area" cols="55" rows="7" placeholder="What's on your mind?"></textarea>
-            <br>
-            <button type="submit" onclick="create_post()" class="btn">Add</button>
+            <div class="floater-top">
+                <textarea name="post-area" id="post-area" cols="52" rows="5" placeholder="What's on your mind?"></textarea>
+            </div>
+            <div class="floater-bottom">
+                <button type="submit" class="btn">Add</button>
+            </div>
           </div>
         </form>
     </div>
     <div class="posts-list content"></div>
     <script>
+        let user = localStorage.getItem('user');
+        if (!user) {
+            location.href = '/logging.html';
+        }
+        
         function create_post() {
+            user = JSON.parse(localStorage.getItem('user'));
+            console.log(user);
             let data = {
                 content : document.getElementById('post-area').value
             };
@@ -56,13 +67,12 @@
             
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://localhost:8000/posts');
+            xhr.setRequestHeader("Authorization", user.session_id);
             xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhr.onload = () => {alert(`Loaded: ${xhr.status} ${xhr.response}`);};
             xhr.send(jsonString);
-            xhr.onload = () => {
-                alert(`Loaded: ${xhr.status} ${xhr.response}`);   
-            };
-
         }
+
     </script>
 
 </body>
