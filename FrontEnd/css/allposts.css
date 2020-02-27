@@ -1,0 +1,142 @@
+* {box-sizing: border-box;}
+
+body {
+    font-family: sans-serif;
+    margin: 0px;
+    overflow: hidden;
+    margin: 0;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: consolas;
+}
+
+nav {
+    position: absolute;
+    top: -15px;
+    min-height: 100px;
+}
+
+h1,h2,h3,h4,h5,h6,p,a,ul,ol,li,small {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    background: transparent;
+}
+
+/* Make the nav take up the whole body width, and give it some top and bottom margin space */
+nav {
+    width: 100%;
+    margin: 20px 0;
+    background: #303030; /* Old browsers */
+    background: -moz-linear-gradient(top, #303030 0%, #8a2be2 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#303030), color-stop(100%,#8a2be2)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,#303030 0%,#8a2be2 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,#303030 0%,#8a2be2 100%); /* Opera 11.10+ */
+    background: linear-gradient(to bottom,#303030 0%,#8a2be2 100%); /* W3C standard, IE10+ */
+    min-height: 50px;
+}
+
+/* Make the list of links take up the whole width of the nav */
+nav ul {
+    list-style: none;
+    position: relative;
+    right: 0;
+    left: 70%;
+}
+
+nav ul li {
+    width: 10%; 
+    float: left;
+}
+
+nav ul li a {
+    text-align: center;
+    padding: 8px 0;
+    display: block;
+    width: 100%;
+    color: white !important;
+    background: #303030; /* Old browsers */
+    background: -moz-linear-gradient(top, #303030 0%, #8a2be2 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#303030), color-stop(100%,#8a2be2)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,#303030 0%,#8a2be2 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,#303030 0%,#8a2be2 100%); /* Opera 11.10+ */
+    background: linear-gradient(to bottom,#303030 0%,#8a2be2 100%); /* W3C standard, IE10+ */
+    min-height: 50px;
+    font-size: 22px;
+}
+
+/* for hovering effect */
+nav ul li a:hover {
+    background: #b0ca34; /* Old browsers */
+    background: -moz-linear-gradient(top,
+      #b0ca34 0%, #96c40d 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom,
+      color-stop(0%,#b0ca34),
+      color-stop(100%,#96c40d)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,
+      #b0ca34 0%,#96c40d 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,
+      #b0ca34 0%,#96c40d 100%); /* Opera 11.10+ */
+    background: linear-gradient(to bottom,
+      #b0ca34 0%,#96c40d 100%); /* W3C standard, IE10+ */
+    transition: background 2s;
+    color: white !important;
+}
+
+nav ul li a,
+nav ul li a:focus,
+nav ul li a:visited,
+nav ul li a:hover,
+nav ul li a:active {
+    color: #383838;
+    text-decoration: none; 
+}
+
+.topnav input[type=text] {
+    padding: 6px;
+    margin-bottom: 6px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.topnav .search-container {
+    position: absolute;
+    left: 50%;
+}
+
+.search-container i{
+    font-size: large;
+    color: aliceblue;
+    padding-left: 7px;
+    padding-top: 5.5px !important;
+    padding-bottom: 7px;
+    padding-right: 7px;
+    background-color: cornflowerblue;
+    border-radius: 3px;
+}
+
+.search-container i:hover {
+    background:  tomato; /* Old browsers */
+    background: -moz-linear-gradient(top,
+       tomato 0%,  tomato 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom,
+      color-stop(0%, tomato),
+      color-stop(100%, tomato)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,
+       tomato 0%, tomato 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,
+       tomato 0%, tomato 100%); /* Opera 11.10+ */
+    background: linear-gradient(to bottom,
+       tomato 0%, tomato 100%); /* W3C standard, IE10+ */
+    transition: background 2s;
+    color: white !important;
+}
+
+.search-container input {
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}

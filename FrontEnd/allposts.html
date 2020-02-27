@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/allposts.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="topnav">
+        <nav>
+            <ul>
+                <li>
+                    <a class="active" href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">MyPosts</a>
+                </li>
+            </ul>
+            <div class="search-container">
+                <form class="search" method="POST" action="">
+                  <input type="text" placeholder="Search" name="search" autocomplete="off">
+                  <a href="">
+                    <i class="fa fa-search"></i>
+                  </a>
+                </form>
+            </div>      
+        </nav>
+    </div>
+    <div></div>
+</body>
+<script>
+        function list_posts() {
+            user = JSON.parse(localStorage.getItem('user'));
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8000/posts');
+            xhr.setRequestHeader("Authorization", user.session_id);
+            xhr.setRequestHeader('content-type', 'application/json; charset=utf-8');
+            xhr.onload = () => {
+                alert(`loaded: ${xhr.status}`);
+            };
+            xhr.send(null);
+        }
+</script>
+</html>
