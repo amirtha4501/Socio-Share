@@ -14,8 +14,8 @@ POST http://localhost:8000/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "ammu",
-    "password": "ammu"
+    "username": "anu",
+    "password": "anu"
 }
 
 ### Logout
@@ -26,15 +26,15 @@ Authorization: 01abe6a8-3dea-4b19-bf64-2f4d8690f315
 
 ### List Posts
 GET http://localhost:8000/posts HTTP/1.1
-Authorization: 0ca26dd8-6b4a-4327-a666-523ce5f39297
+Authorization: 068f8109-7258-46ed-acf7-980a80a3de13
 
 ### Create Post
 POST http://localhost:8000/posts HTTP/1.1
 Content-Type: application/json
-Authorization: 0ca26dd8-6b4a-4327-a666-523ce5f39297
+Authorization: 3470dd46-aa5c-498a-b615-31ec31132f91
 
 {
-    "content": "This is my third post"
+    "content": "This is my post"
 }
 
 ### Get Post

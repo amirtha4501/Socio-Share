@@ -9,6 +9,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sweetalert.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
@@ -48,32 +49,69 @@
             </div>
           </div>
         </form>
-    </div>
-    <div class="posts-list content"></div> 
+    </div> 
+    <div class="posts-list content"></div>
+
     <script>
         let user = localStorage.getItem('user');
         if (!user) {
             location.href = '/logging.html';
         }
+
+        const postsList = document.querySelector('.posts-list');
+        const posts     = JSON.parse(localStorage.getItem('posts')) || [];
+        const postForm  = document.querySelector('.post-form');
         
         function create_post() {
             user = JSON.parse(localStorage.getItem('user'));
-            console.log(user);
+            
             let data = {
                 content : document.getElementById('post-area').value
             };
-            console.log(data);
+            
             let jsonString = JSON.stringify(data);
             
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://localhost:8000/posts');
             xhr.setRequestHeader("Authorization", user.session_id);
             xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-            xhr.onload = () => {alert(`Loaded: ${xhr.status} ${xhr.response}`);};
+            // xhr.onload = () => {alert(`Loaded: ${xhr.status} ${xhr.response}`);};
             xhr.send(jsonString);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8000/posts');
+            xhr.setRequestHeader("Authorization", user.session_id);
+            xhr.setRequestHeader('content-type', 'application/json; charset=utf-8');
+            xhr.onload = () => {
+                alert(`loaded: ${xhr.status} ${xhr.response}`);
+                localStorage.setItem("posts", xhr.response);
+            };
+            xhr.send(null);
+            fillpostsList(posts);
+            storeposts(posts);
+            postForm.reset();  
         } 
+
+
+    function fillpostsList(posts = []) {
+        const postsHtml = posts.map((post, i) => {
+        return `
+            <a href="#" class="post" data-id="${i}">
+            <div class="img"></div>
+            <div class="title">${post.content}</div>
+            <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        `;
+        }).join('');     
+        postsList.innerHTML = postsHtml;    
+    }
+
+    function storeposts(posts = []) {
+      localStorage.setItem('posts', JSON.stringify(posts));
+    }
 
     </script>
 
 </body>
 </html>
+ 
